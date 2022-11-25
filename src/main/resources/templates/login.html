@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{./static/css/login.css}" href="../static/css/login.css">
+    <title>Welcome to our page</title>
+</head>
+<body>
+
+<header>
+    <h1 th:text="#{greeting}">Welcome to Poll App </h1>
+
+</header>
+
+<main>
+    <form action="/login" method="post" class="form_class">
+        <div class="form_div">
+                <div th:if="${logout}!= null" style="color: #a81bb2; font-size: 20px">
+                    <p th:text="${logout}"> </p>
+            </div>
+
+            <div th:if="${errorMassage}!=null" style="color: red; font-size: 20px">
+                    <p th:text="${errorMassage}"></p>
+            </div>
+
+            <div th:if="${registerMessage}!=null" style="color: #a81bb2; font-size: 20px">
+                <p th:text="${registerMessage}"></p>
+            </div>
+
+            <br>
+            <label><b th:text="#{login}">  </b></label>
+            <input class="field_class" type="text" placeholder="Enter email" name="email">
+            <br>
+            <label><b th:text="#{pass}">Password</b></label>
+            <input class="field_class" type="password" placeholder="Enter Password" th:name="password">
+            <br>
+            <label>
+                <input type="checkbox" checked="checked" name="remember" th:text="#{remember}">
+            </label>
+            <input class="submit_class" type="submit" th:value="#{login_button}"/>
+
+            <br>
+    </form>
+
+    <form action="/register" method="get" >
+        <input type="submit" class="creat" th:value="#{sign_up}"/>
+    </form>
+    <div class="lang">
+        <span th:text="#{lang.change}+' --> '"></span>
+        <a href="/login?lang=en-US" th:text="#{language.en}+', '"></a>
+        <a href="/login?lang=hy-AM" th:text="#{language.arm}+', '"></a>
+        <a href="/login?lang=ru-RU" th:text="#{language.ru}"></a>
+    </div>
+    </div>
+
+
+</main>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{../static/css/question_answer.css}" href="../static/css/question_answer.css" >
+    <title>Questions</title>
+</head>
+<body>
+<form th:action="@{/results}" th:method="GET">
+    <div th:each="question : ${questions}">
+        <input type="hidden" name="questionId" th:value="${question.getQuestId()}">
+
+        <p class="question" th:text="${question.getQuestId()} + '. ' + ${question.getText()}"></p>
+
+        <div th:each="answer : ${question.getAnswersList()}">
+<!--            <th:block th:each="i: ${#numbers.sequence(1, 4)}">-->
+<!--                <div th:if="${answer.getId()} == ${i}">-->
+                <input class="answer" type="radio" th:name="marked+${question.getQuestId()}" th:value="${answer.getWeight()}"
+                          th:text="${answer.getText()}" >
+               </div>
+            </th:block>
+        </div>
+    </div>
+    <input type="submit" name="done" class="creat" value="Done"/>
+
+</form>
+</body>
+</html>
