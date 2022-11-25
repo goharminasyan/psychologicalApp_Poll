@@ -1,3 +1,6 @@
+# poll_app_springBoot
+
+Restful app
 Implemented for the polling system:
 
 The poll includes several questions. Each question can have multiple answers. Each answer option has a weight. There can be several results for each poll, depending on the number of points scored by the user during the survey.
