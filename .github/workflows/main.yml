@@ -1,0 +1,49 @@
+name: Project CI/CD 
+
+on: 
+  push:
+    branches: 
+      - master
+jobs:
+  build:
+    runs-on : ubuntu-latest
+    
+    steps:        
+      - name : Clone repository into git vm
+        uses: actions/checkout@v1
+        
+      - name : Setup jdk
+        uses : actions/setup-java@v1
+        with:
+          java-version: 11
+        
+      - name : Create jar file for project
+        run : mvn clean install
+    
+      - name: Upload JAR
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact
+          path: target/pollApp_SpringBoot-0.0.1-SNAPSHOT.jar   
+  deploy:
+    needs: build
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download JAR
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact
+          
+      - name: Beanstalk Deploy
+        uses: einaregilsson/beanstalk-deploy@v21
+
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          use_existing_version_if_available: false
+          application_name: awstest
+          environment_name: dev-test
+          version_label:  ${{ github.sha }}
+          region: ap-south-1
+          deployment_package: pollApp_SpringBoot-0.0.1-SNAPSHOT.jar
