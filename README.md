@@ -1,6 +1,6 @@
 # poll_app_springBoot
 
-[![Project jar file](https://github.com/goharminasyan/timetabe/actions/workflows/jar.yml/badge.svg)](https://github.com/goharminasyan/timetabe/actions/workflows/jar.yml)
+[![Project deployment](https://github.com/goharminasyan/timetabe/actions/workflows/jar.yml/badge.svg)](https://github.com/goharminasyan/timetabe/actions/workflows/jar.yml)
 
 
 Restful app
