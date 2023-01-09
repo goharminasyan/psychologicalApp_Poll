@@ -1,5 +1,10 @@
 # poll_app_springBoot
 
+[![Project deployment]
+(https://github.com/goharminasyan/timetabe/actions/workflows/jar.yml/badge.svg)]
+(https://github.com/goharminasyan/timetabe/actions/workflows/jar.yml)
+
+
 Restful app
 Implemented for the polling system:
 
